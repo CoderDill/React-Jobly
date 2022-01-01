@@ -37,7 +37,7 @@ function App() {
             <Route exact path="/profile">
               <Profile />
             </Route>
-            <Redirect path="/" />
+            <Redirect to="/"/>
           </Switch>
         </main>
       </BrowserRouter>
