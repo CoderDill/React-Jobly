@@ -1,5 +1,10 @@
 function Jobs() {
-  return <></>;
+  return (
+    <>
+      {" "}
+      <div>Jobs</div>
+    </>
+  );
 }
 
 export default Jobs;

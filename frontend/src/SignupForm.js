@@ -1,5 +1,10 @@
 function SignupForm() {
-  return <></>;
+  return (
+    <>
+      {" "}
+      <div>Sigin Form</div>
+    </>
+  );
 }
 
 export default SignupForm;
