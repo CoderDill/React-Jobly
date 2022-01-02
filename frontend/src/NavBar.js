@@ -1,11 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
 import "./NavBar.css";
 import { Link, NavLink } from "react-router-dom";
 import { Navbar, Nav, NavItem, NavbarBrand } from "reactstrap";
+import UserContext from "./UserContext";
 
-function NavBar({logout}) {
-  const currUser = { username: "testuser", first_name: "Matt" }
-  
+function NavBar({ logout }) {
+  const currUser = { username: "testuser" };
+  // const { currUser } = useContext(UserContext);
+
   function loggedIn() {
     return (
       <ul className="navbar-nav ml-auto">
@@ -24,11 +26,11 @@ function NavBar({logout}) {
             Profile
           </NavLink>
         </li>
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <Link className="nav-link" to="/" onClick={logout}>
             Log out {currUser.first_name || currUser.username}
           </Link>
-        </li>
+        </li> */}
       </ul>
     );
   }
@@ -37,17 +39,13 @@ function NavBar({logout}) {
     return (
       <ul>
         <li>
-          <NavLink to="/login">
-            Login
-          </NavLink>
+          <NavLink to="/login">Login</NavLink>
         </li>
         <li>
-          <NavLink to="/logout">
-            Sign Up
-          </NavLink>
+          <NavLink to="/logout">Sign Up</NavLink>
         </li>
       </ul>
-    )
+    );
   }
 
   return (

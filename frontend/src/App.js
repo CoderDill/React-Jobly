@@ -16,13 +16,10 @@ function App() {
         <NavBar />
         <main>
           <Switch>
-            <Route>
-              <Home />
-            </Route>
             <Route exact path="/companies">
               <Companies />
             </Route>
-            <Route path="/companies/:handle">
+            <Route exact path="/companies/:handle">
               <Company />
             </Route>
             <Route exact path="/jobs">
@@ -37,7 +34,10 @@ function App() {
             <Route exact path="/profile">
               <Profile />
             </Route>
-            <Redirect to="/"/>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Redirect to="/" />
           </Switch>
         </main>
       </BrowserRouter>
