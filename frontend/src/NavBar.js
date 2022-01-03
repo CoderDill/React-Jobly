@@ -5,7 +5,7 @@ import { Navbar, Nav, NavItem, NavbarBrand } from "reactstrap";
 import UserContext from "./UserContext";
 
 function NavBar({ logout }) {
-  const currUser = { username: "testuser" };
+  const currUser = false;
   // const { currUser } = useContext(UserContext);
 
   function loggedIn() {
@@ -42,7 +42,7 @@ function NavBar({ logout }) {
           <NavLink to="/login">Login</NavLink>
         </li>
         <li>
-          <NavLink to="/logout">Sign Up</NavLink>
+          <NavLink to="/signup">Sign Up</NavLink>
         </li>
       </ul>
     );
