@@ -5,11 +5,9 @@ import "./LoginForm.css";
 const LoginForm = () => {
   const [formData, setFormData] = useState({
     username: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-    email: "",
+    password: ""
   });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((formData) => ({
@@ -17,15 +15,13 @@ const LoginForm = () => {
       [name]: value,
     }));
   };
+  
   const handleSubmit = (e) => {
     e.preventDefault();
 
     setFormData({
       username: "",
-      password: "",
-      firstName: "",
-      lastName: "",
-      email: "",
+      password: ""
     });
   };
   return (
