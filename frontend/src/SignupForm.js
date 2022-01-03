@@ -30,10 +30,11 @@ const SignupForm = () => {
   };
   return (
     <>
+      <h1>Sign Up</h1>
       <Form onSubmit={handleSubmit} className="signupForm">
         <FormGroup className="formGroup">
-          <label htmlFor="username">Username</label>
-          <input
+          <Label htmlFor="username"></Label>
+          <Input
             name="username"
             type="text"
             placeholder="Username"
@@ -42,8 +43,8 @@ const SignupForm = () => {
           />
         </FormGroup>
         <FormGroup className="formGroup">
-          <label htmlFor="password">Password</label>
-          <input
+          <Label htmlFor="password"></Label>
+          <Input
             name="password"
             type="text"
             placeholder="Password"
@@ -52,8 +53,8 @@ const SignupForm = () => {
           />
         </FormGroup>
         <FormGroup className="formGroup">
-          <label htmlFor="firstName">First Name</label>
-          <input
+          <Label htmlFor="firstName"></Label>
+          <Input
             name="firstName"
             type="text"
             placeholder="First Name"
@@ -62,8 +63,8 @@ const SignupForm = () => {
           />
         </FormGroup>
         <FormGroup className="formGroup">
-          <label htmlFor="lastName">Last Name</label>
-          <input
+          <Label htmlFor="lastName"></Label>
+          <Input
             name="lastName"
             type="text"
             placeholder="Last Name"
@@ -72,8 +73,8 @@ const SignupForm = () => {
           />
         </FormGroup>
         <FormGroup className="formGroup">
-          <label htmlFor="email">Email</label>
-          <input
+          <Label htmlFor="email"></Label>
+          <Input
             name="email"
             type="email"
             placeholder="Email"
