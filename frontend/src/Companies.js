@@ -6,9 +6,9 @@ function Companies() {
     return (
         <>
             <div>Companies</div>
-            {companies.map(company => {
+            {/* {companies.map(company => {
                 <div>{company }</div>
-            })}
+            })} */}
         </>
     )
 }
