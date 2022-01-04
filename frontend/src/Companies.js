@@ -7,17 +7,17 @@ function Companies() {
   const [companies, setCompanies] = useState(null);
 
   useEffect(function getCompaniesOnMount() {
+    async function search() {
+      let companies = await JoblyApi.getCompanies();
+      setCompanies(companies);
+    }
     search();
   }, []);
-
-  async function search(name) {
-    let companies = await JoblyApi.getCompanies(name);
-    setCompanies(companies);
-  }
 
   return (
     <>
       <div>Companies</div>
+      
       {companies.map((company) => (
         <Company company={company} />
       ))}

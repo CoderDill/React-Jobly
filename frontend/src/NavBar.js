@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
 import "./NavBar.css";
 import { Link, NavLink } from "react-router-dom";
-import { Navbar, Nav, NavItem, NavbarBrand } from "reactstrap";
 import UserContext from "./UserContext";
 
 function NavBar({ logout }) {
-  const currUser = {name: 'test'};
+  const currUser = { name: "test" };
   // const { currUser } = useContext(UserContext);
 
   function loggedIn() {
@@ -23,11 +22,9 @@ function NavBar({ logout }) {
           Profile
         </NavLink>
 
-        {/* <li className="nav-item">
-          <Link className="nav-link" to="/" onClick={logout}>
-            Log out {currUser.first_name || currUser.username}
-          </Link>
-        </li> */}
+        <Link className="nav-link" to="/" onClick={logout}>
+          Log out {currUser.first_name || currUser.username}
+        </Link>
       </div>
     );
   }
@@ -54,7 +51,7 @@ function NavBar({ logout }) {
         borderBottom: "1px solid grey",
         paddingLeft: "1em",
         paddingTop: ".5em",
-        paddingBottom: ".5em"
+        paddingBottom: ".5em",
       }}
     >
       <Link
