@@ -18,9 +18,7 @@ function Companies() {
   return (
     <>
       <div>Companies</div>
-      {companies.map((company) => (
-        <Company company={company} />
-      ))}
+      
     </>
   );
 }
