@@ -1,10 +1,10 @@
-import Home from "./Home";
-import Companies from "./Companies";
+import Home from "../homepage/Home";
+import Companies from "../companies/Companies";
 import Jobs from "./Jobs";
 import Company from "./Company";
-import LoginForm from "./LoginForm";
-import SignupForm from "./SignupForm";
-import Profile from "./Profile";
+import LoginForm from "../auth/LoginForm";
+import SignupForm from "../auth/SignupForm";
+import Profile from "../profile/Profile";
 import { Route, Switch, Redirect } from "react-router-dom";
 
 

@@ -2,8 +2,8 @@ import "./App.css";
 import { useState } from "react";
 import NavBar from "./NavBar";
 import { BrowserRouter } from "react-router-dom";
-import UserContext from "./UserContext";
-import Routes from "./Routes";
+import UserContext from "./auth/UserContext";
+import Routes from "./navigation/Routes";
 
 function App() {
   const [currUser, setCurrentUser] = useState(null);
