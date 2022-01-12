@@ -1,4 +1,4 @@
-import Jobs from "./Jobs"
+import Jobs from "../jobs/Jobs"
 
 
 function CompanyDetail() {

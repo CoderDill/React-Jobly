@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Company from "../Company";
+import Company from "./Company";
 import JoblyApi from "../api/JoblyAPI";
 
 function Companies() {
@@ -17,13 +17,7 @@ function Companies() {
   return (
     <>
       <div>Companies</div>
-      
-<<<<<<< HEAD
-=======
-      {companies.map((company) => (
-        <Company company={company} />
-      ))}
->>>>>>> ce4dfef1333bf9c55854a110f286cfab8f239fa9
+      {companies}
     </>
   );
 }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Job from "./jobs/Job";
+import Job from "./Job";
 
 function Jobs() {
   const [job, setJob] = useState(null)
