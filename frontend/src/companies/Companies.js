@@ -4,20 +4,26 @@ import JoblyApi from "../api/JoblyAPI";
 
 function Companies() {
   //get all companies, loop through companies to display a Company
-  const [companies, setCompanies] = useState(null);
+  const [companies, setCompanies] = useState([]);
 
   useEffect(function getCompaniesOnMount() {
-    async function search() {
-      let companies = await JoblyApi.getCompanies();
-      setCompanies(companies);
-    }
-    search();
+      search();
   }, []);
-
+  async function search() {
+    let companies = await JoblyApi.getCompanies();
+    setCompanies(companies);
+  }
   return (
     <>
       <div>Companies</div>
-      {companies}
+      {companies.map((c) => (
+        <Company
+          key={c.handle}
+          handle={c.handle}
+          description={c.description}
+          logoUrl={c.logoUrl}
+        />
+      ))}
     </>
   );
 }
