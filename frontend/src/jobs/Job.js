@@ -1,8 +1,9 @@
-function Job({job}) {
+function Job({jobs}) {
     return (
         <>
             <h1>Job detail</h1>
-        </>
+            
+        </> 
     )
 }
 

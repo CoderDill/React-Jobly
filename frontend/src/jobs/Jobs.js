@@ -1,14 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import JoblyApi from "../api/JoblyAPI";
 import Job from "./Job";
 
 function Jobs() {
-  const [job, setJob] = useState(null)
+  const [jobs, setJobs] = useState([])
 
+  useEffect(function getAllJobs() {
+    search()
+  }, [])
+
+  async function search() {
+    let jobs = await JoblyApi.getJobs()
+    setJobs(jobs)
+  }
 
   return (
     <>
       <div>Jobs</div>
-      <Job job={job}/>
+      <Job jobs={jobs}/>
     </>
   );
 }
