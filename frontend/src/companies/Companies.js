@@ -15,13 +15,14 @@ function Companies() {
   }
   return (
     <>
-      <div>Companies</div>
+      <h1>Companies</h1>
       {companies.map((c) => (
         <Company
           key={c.handle}
           handle={c.handle}
           description={c.description}
           logoUrl={c.logoUrl}
+          name={c.name}
         />
       ))}
     </>
