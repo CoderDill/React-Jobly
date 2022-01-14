@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import JoblyApi from "../api/JoblyAPI";
-import Job from "./Job";
+import JobCard from "./JobCard";
 
 function Jobs() {
   const [jobs, setJobs] = useState([])
@@ -17,7 +17,7 @@ function Jobs() {
   return (
     <>
       <div>Jobs</div>
-      <Job jobs={jobs}/>
+      <JobCard jobs={jobs}/>
     </>
   );
 }
