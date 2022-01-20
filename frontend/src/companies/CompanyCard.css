@@ -1,12 +1,6 @@
-<<<<<<< HEAD:frontend/src/companies/CompanyCard.css
 .CompanyCard {
-=======
-.Company {
-  display: block;
->>>>>>> a7023dd81d1aa64778333dd3b86ea23c3f495f86:frontend/src/companies/Company.css
   max-height: 250px;
-  max-width: 75%;
-  margin: 1rem;
+  margin-bottom: 1rem;
   color: inherit;
   border-radius: 0;
   border: none;
@@ -17,18 +11,7 @@
   width: 50px;
 }
 
-<<<<<<< HEAD:frontend/src/companies/CompanyCard.css
 .CompanyCard:hover { /* <Card /> that is also <Link /> */
   text-decoration: none;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
-=======
-.Company:hover {
-  text-decoration: none;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-}
-
-p {
-  font-size: 16px;
-}
->>>>>>> a7023dd81d1aa64778333dd3b86ea23c3f495f86:frontend/src/companies/Company.css
