@@ -1,92 +1,131 @@
-import { useState } from "react";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
-import './SignupForm.css'
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import Alert from "../common/Alert";
 
-const SignupForm = () => {
+/** Signup form.
+ *
+ * Shows form and manages update to state on changes.
+ * On submission:
+ * - calls signup function prop
+ * - redirects to /companies route
+ *
+ * Routes -> SignupForm -> Alert
+ * Routed as /signup
+ */
+
+function SignupForm({ signup }) {
+  const history = useHistory();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
     firstName: "",
     lastName: "",
-    email: ""
+    email: "",
   });
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((formData) => ({
-      ...formData,
-      [name]: value,
-    }));
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const [formErrors, setFormErrors] = useState([]);
 
-    setFormData({
-      username: "",
-      password: "",
-      firstName: "",
-      lastName: "",
-      email: "",
-    });
-  };
-  return (
-    <>
-      <h1>Sign Up</h1>
-      <Form onSubmit={handleSubmit} className="signupForm">
-        <FormGroup className="formGroup">
-          <Label htmlFor="username"></Label>
-          <Input
-            name="username"
-            type="text"
-            placeholder="Username"
-            value={formData.username}
-            onChange={handleChange}
-          />
-        </FormGroup>
-        <FormGroup className="formGroup">
-          <Label htmlFor="password"></Label>
-          <Input
-            name="password"
-            type="text"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-        </FormGroup>
-        <FormGroup className="formGroup">
-          <Label htmlFor="firstName"></Label>
-          <Input
-            name="firstName"
-            type="text"
-            placeholder="First Name"
-            value={formData.firstName}
-            onChange={handleChange}
-          />
-        </FormGroup>
-        <FormGroup className="formGroup">
-          <Label htmlFor="lastName"></Label>
-          <Input
-            name="lastName"
-            type="text"
-            placeholder="Last Name"
-            value={formData.lastName}
-            onChange={handleChange}
-          />
-        </FormGroup>
-        <FormGroup className="formGroup">
-          <Label htmlFor="email"></Label>
-          <Input
-            name="email"
-            type="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </FormGroup>
-
-        <Button>Sign Up</Button>
-      </Form>
-    </>
+  console.debug(
+      "SignupForm",
+      "signup=", typeof signup,
+      "formData=", formData,
+      "formErrors=", formErrors,
   );
-};
+
+  /** Handle form submit:
+   *
+   * Calls login func prop and, if successful, redirect to /companies.
+   */
+
+  async function handleSubmit(evt) {
+    evt.preventDefault();
+    let result = await signup(formData);
+    if (result.success) {
+      history.push("/companies");
+    } else {
+      setFormErrors(result.errors);
+    }
+  }
+
+  /** Update form data field */
+  function handleChange(evt) {
+    const { name, value } = evt.target;
+    setFormData(data => ({ ...data, [name]: value }));
+  }
+
+  return (
+      <div className="SignupForm">
+        <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+          <h2 className="mb-3">Sign Up</h2>
+          <div className="card">
+            <div className="card-body">
+              <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <label>Username</label>
+                  <input
+                      name="username"
+                      className="form-control"
+                      value={formData.username}
+                      onChange={handleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Password</label>
+                  <input
+                      type="password"
+                      name="password"
+                      className="form-control"
+                      value={formData.password}
+                      onChange={handleChange}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>First name</label>
+                  <input
+                      name="firstName"
+                      className="form-control"
+                      value={formData.firstName}
+                      onChange={handleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Last name</label>
+                  <input
+                      name="lastName"
+                      className="form-control"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Email</label>
+                  <input
+                      type="email"
+                      name="email"
+                      className="form-control"
+                      value={formData.email}
+                      onChange={handleChange}
+                  />
+                </div>
+
+                {formErrors.length
+                    ? <Alert type="danger" messages={formErrors} />
+                    : null
+                }
+
+                <button
+                    type="submit"
+                    className="btn btn-primary float-right"
+                    onSubmit={handleSubmit}
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+  );
+}
 
 export default SignupForm;

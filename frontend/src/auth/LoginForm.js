@@ -1,57 +1,102 @@
-import { useState } from "react";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
-import "./LoginForm.css";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import Alert from "../common/Alert";
 
-const LoginForm = () => {
+/** Login form.
+ *
+ * Shows form and manages update to state on changes.
+ * On submission:
+ * - calls login function prop
+ * - redirects to /companies route
+ *
+ * Routes -> LoginForm -> Alert
+ * Routed as /login
+ */
+
+function LoginForm({ login }) {
+  const history = useHistory();
   const [formData, setFormData] = useState({
     username: "",
-    password: ""
+    password: "",
   });
+  const [formErrors, setFormErrors] = useState([]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((formData) => ({
-      ...formData,
-      [name]: value,
-    }));
-  };
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    setFormData({
-      username: "",
-      password: ""
-    });
-  };
-  return (
-    <>
-      <h1>Log in</h1>
-      <Form onSubmit={handleSubmit} className="loginForm">
-        <FormGroup className="formGroup">
-          <Label htmlFor="username"></Label>
-          <Input
-            name="username"
-            type="text"
-            placeholder="Username"
-            value={formData.username}
-            onChange={handleChange}
-          />
-        </FormGroup>
-        <FormGroup className="formGroup">
-          <Label htmlFor="password"></Label>
-          <Input
-            name="password"
-            type="text"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-        </FormGroup>
-        <Button>Log in</Button>
-      </Form>
-    </>
+  console.debug(
+      "LoginForm",
+      "login=", typeof login,
+      "formData=", formData,
+      "formErrors", formErrors,
   );
-};
+
+  /** Handle form submit:
+   *
+   * Calls login func prop and, if successful, redirect to /companies.
+   */
+
+  async function handleSubmit(evt) {
+    evt.preventDefault();
+    let result = await login(formData);
+    if (result.success) {
+      history.push("/companies");
+    } else {
+      setFormErrors(result.errors);
+    }
+  }
+
+  /** Update form data field */
+  function handleChange(evt) {
+    const { name, value } = evt.target;
+    setFormData(l => ({ ...l, [name]: value }));
+  }
+
+  return (
+      <div className="LoginForm">
+        <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+          <h3 className="mb-3">Log In</h3>
+
+          <div className="card">
+            <div className="card-body">
+              <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <label>Username</label>
+                  <input
+                      name="username"
+                      className="form-control"
+                      value={formData.username}
+                      onChange={handleChange}
+                      autoComplete="username"
+                      required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Password</label>
+                  <input
+                      type="password"
+                      name="password"
+                      className="form-control"
+                      value={formData.password}
+                      onChange={handleChange}
+                      autoComplete="current-password"
+                      required
+                  />
+                </div>
+
+                {formErrors.length
+                    ? <Alert type="danger" messages={formErrors} />
+                    : null}
+
+                <button
+                    className="btn btn-primary float-right"
+                    onSubmit={handleSubmit}
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+  );
+}
 
 export default LoginForm;
