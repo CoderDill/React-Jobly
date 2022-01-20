@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useContext, useState } from "react";
 import "./JobCard.css";
 import UserContext from "../auth/UserContext";
@@ -65,3 +66,8 @@ function formatSalary(salary) {
 
 
 export default JobCard;
+=======
+function JobCard() {
+    
+}
+>>>>>>> a7023dd81d1aa64778333dd3b86ea23c3f495f86
